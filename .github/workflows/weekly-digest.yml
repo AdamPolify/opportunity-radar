@@ -1,0 +1,58 @@
+name: Weekly Opportunity Radar Digest
+
+on:
+  schedule:
+    # Every Monday at 13:00 UTC
+    - cron: '0 13 * * 1'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run digest
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: npm run run
+
+      - name: Read email subject/body into step outputs
+        id: email
+        run: |
+          {
+            echo "subject<<EOF"
+            cat data/latest-subject.txt
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Send email digest
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.MAIL_SERVER }}
+          server_port: ${{ secrets.MAIL_PORT }}
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: ${{ steps.email.outputs.subject }}
+          to: ${{ secrets.EMAIL_TO }}
+          from: Opportunity Radar
+          html_body: file://data/latest-email.html
+          convert_markdown: false
+
+      - name: Commit updated state and digests
+        run: |
+          git config user.name "opportunity-radar-bot"
+          git config user.email "actions@github.com"
+          git add data/
+          git diff --cached --quiet || git commit -m "chore: weekly digest $(date -u +%Y-%m-%d)"
+          git push
