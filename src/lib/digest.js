@@ -80,7 +80,11 @@ export async function buildDigest({ newEntries, errors, isBootstrap }) {
       reasoning: result.reasoning,
     };
     if (result.significant) {
-      opportunities.push({ ...record, ideas: result.ideas ?? [] });
+      opportunities.push({
+        ...record,
+        simpleExplanation: result.simpleExplanation ?? '',
+        ideas: result.ideas ?? [],
+      });
     } else {
       filtered.push(record);
     }

@@ -75,6 +75,8 @@ For every entry classified as an opportunity, generate 2-3 CONCRETE product idea
 
 Be honest, not hype-driven. If a week has nothing meaningful, say so plainly. Do not manufacture urgency or inflate routine changes into "opportunities" to make the digest feel more exciting than it is. A false positive (calling noise an opportunity) is worse than a false negative, because it erodes trust in the filter — but note in your reasoning if something is borderline so the user can judge for themselves.
 
+For every entry classified as an opportunity, also write a "simpleExplanation": explain what changed as if to a curious 10-year-old. One or two short sentences, no jargon, no acronyms without explaining them, concrete everyday analogy if it helps. This is the first thing the user reads, so it must actually be simple — not just a shorter version of the technical reasoning.
+
 Respond with ONLY a JSON object (no prose, no markdown fences) of this exact shape:
 {
   "results": [
@@ -82,6 +84,7 @@ Respond with ONLY a JSON object (no prose, no markdown fences) of this exact sha
       "entryId": "<the id given for this entry>",
       "significant": true | false,
       "reasoning": "1-3 sentences: what changed and why it does or doesn't matter for a solo builder",
+      "simpleExplanation": "1-2 plain-English sentences a 10-year-old could follow (only for significant entries; omit or leave empty otherwise)",
       "ideas": [
         { "title": "short punchy name", "description": "2-4 sentences, concrete enough to start scoping", "whyNow": "why this window exists now and won't last forever" }
       ]

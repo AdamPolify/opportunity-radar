@@ -34,6 +34,7 @@ export function renderEmailText(digest) {
       lines.push('');
       lines.push(`[${opp.source}] ${opp.title}`);
       if (opp.url) lines.push(opp.url);
+      if (opp.simpleExplanation) lines.push(`In plain terms: ${opp.simpleExplanation}`);
       lines.push(`Why it matters: ${opp.reasoning}`);
       for (const idea of opp.ideas ?? []) {
         lines.push(`  - Idea: ${idea.title}`);
@@ -69,6 +70,7 @@ export function renderEmailHtml(digest) {
       <div style="margin-bottom:24px;padding:16px;border:1px solid #e2e2e2;border-radius:8px;">
         <div style="font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:#666;">${escapeHtml(opp.source)}</div>
         <h3 style="margin:4px 0 8px;">${opp.url ? `<a href="${escapeHtml(opp.url)}" style="color:#111;text-decoration:none;">${escapeHtml(opp.title)}</a>` : escapeHtml(opp.title)}</h3>
+        ${opp.simpleExplanation ? `<p style="background:#eef4ee;border-radius:6px;padding:8px 12px;color:#2a4d33;margin:0 0 10px;font-size:14px;">${escapeHtml(opp.simpleExplanation)}</p>` : ''}
         <p style="color:#333;margin:0 0 12px;">${escapeHtml(opp.reasoning)}</p>
         ${(opp.ideas ?? [])
           .map(

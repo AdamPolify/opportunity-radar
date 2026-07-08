@@ -7,15 +7,40 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Opportunity Radar</h1>
-      <p class="tagline">Weekly, skeptical scan of developer platform changelogs for genuine product-building opportunities.</p>
+  <div class="page">
+    <header class="top">
+      <div class="wordmark">
+        <span class="logo-dot">◎</span>
+        <h1>Opportunity Radar</h1>
+      </div>
+      <svg class="badge" viewBox="0 0 100 100" aria-hidden="true">
+        <defs>
+          <path id="badge-circle" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
+        </defs>
+        <circle cx="50" cy="50" r="49" class="badge-ring" />
+        <text font-size="8.6" font-weight="700" letter-spacing="1.5">
+          <textPath href="#badge-circle" startOffset="0%">WEEKLY · SKEPTICAL · HONEST ·</textPath>
+        </text>
+        <text x="50" y="46" text-anchor="middle" class="badge-center-1">RADAR</text>
+        <text x="50" y="58" text-anchor="middle" class="badge-center-2">EDITION</text>
+      </svg>
     </header>
-    <div id="loading">Loading digests…</div>
-    <div id="error" style="display:none;"></div>
-    <main id="digests"></main>
+
+    <nav id="pills" class="pills"></nav>
+
+    <div id="loading" class="status">Loading digests…</div>
+    <div id="error" class="status error" style="display:none;"></div>
+
+    <main id="feed"></main>
   </div>
+
+  <div id="overlay" class="overlay" hidden>
+    <div class="sheet">
+      <button id="closeSheet" class="close-btn" aria-label="Close">✕</button>
+      <div id="sheetContent"></div>
+    </div>
+  </div>
+
   <script src="app.js"></script>
 </body>
 </html>
