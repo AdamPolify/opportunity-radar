@@ -189,7 +189,13 @@ async function main() {
     loadingEl.style.display = 'none';
 
     if (!manifest.digests || manifest.digests.length === 0) {
-      feedEl.innerHTML = '<p class="empty-state">No digests yet. The first weekly run will appear here.</p>';
+      document.getElementById('pills').style.display = 'none';
+      feedEl.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">◎</div>
+          <h2>Nothing scanned yet</h2>
+          <p>Opportunity Radar hasn't run yet. Once the first weekly job fires (or you trigger it manually from the Actions tab), your first digest will show up right here — either a handful of real opportunities, or an honest "quiet week."</p>
+        </div>`;
       return;
     }
 

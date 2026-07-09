@@ -425,7 +425,28 @@ details.deep-dive p { margin: 8px 0 0; }
 }
 
 .empty-state {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 40px 28px;
+  margin-top: 12px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.empty-state .empty-icon {
+  font-size: 36px;
+  color: var(--red);
+  margin-bottom: 12px;
+}
+
+.empty-state h2 {
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+.empty-state p {
   color: var(--muted);
-  font-size: 14px;
-  padding: 8px 0 24px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  margin: 0;
 }
