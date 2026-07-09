@@ -113,17 +113,22 @@ export async function analyzeEntries(entries) {
     summary: e.summary,
   }));
 
-  const msg = await client().messages.create({
-    model: MODEL,
-    max_tokens: 32000,
-    system: ANALYSIS_SYSTEM_PROMPT,
-    messages: [
-      {
-        role: 'user',
-        content: `Here are this week's new changelog entries as JSON:\n\n${JSON.stringify(payload, null, 2)}`,
-      },
-    ],
-  });
+  // max_tokens is high enough that the SDK requires streaming (it refuses to
+  // make a long-running non-streaming request that risks a connection
+  // timeout past 10 minutes).
+  const msg = await client()
+    .messages.stream({
+      model: MODEL,
+      max_tokens: 32000,
+      system: ANALYSIS_SYSTEM_PROMPT,
+      messages: [
+        {
+          role: 'user',
+          content: `Here are this week's new changelog entries as JSON:\n\n${JSON.stringify(payload, null, 2)}`,
+        },
+      ],
+    })
+    .finalMessage();
 
   const text = msg.content.map((b) => (b.type === 'text' ? b.text : '')).join('');
   const parsed = extractJson(text);
