@@ -1,0 +1,289 @@
+{
+  "generatedAt": "2026-07-09T01:04:11.379Z",
+  "isBootstrap": false,
+  "weekSummary": "A heavy week of Anthropic platform updates, but most are deprecations, internal API migrations, or incremental agent-platform tweaks that don't open new building opportunities. The real signals are the Sonnet 5 and Fable 5 launches (big context windows, introductory pricing), the rate-limit increase that removes a real throughput bottleneck, the code execution tool's new persistent state, native cron scheduling for Managed Agents, and a new Swift/Apple integration path — each of these is a genuine, buildable opportunity worth a closer look.",
+  "opportunities": [
+    {
+      "source": "anthropic-release-notes",
+      "title": "Claude Sonnet 5 launched",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-30",
+      "reasoning": "A new flagship model with a 1M token context window, introductory pricing through August, and always-on adaptive thinking is a real capability jump — big-context use cases (whole codebases, contracts, books) become newly practical for solo builders at a temporarily discounted price.",
+      "simpleExplanation": "Anthropic released a smarter AI that can read a huge amount of text at once — like feeding it an entire book instead of just a chapter — and for a limited time it's cheaper to use.",
+      "ideas": [
+        {
+          "title": "WholeRepo Reviewer",
+          "description": "A tool that loads an entire codebase into Sonnet 5's 1M context window and produces architecture reviews, dead-code reports, and refactor suggestions in one pass, sold as a $29/mo tool for small dev teams.",
+          "whyNow": "Introductory pricing runs only through Aug 31, 2026, and few competitors have rebuilt tools around the new context size yet."
+        },
+        {
+          "title": "Contract Digest Bot",
+          "description": "Upload entire multi-hundred-page contract bundles (leases, vendor agreements) and get a single-pass summary of risks and obligations, targeted at small law firms and freelancers who can't afford enterprise legal AI tools.",
+          "whyNow": "Long-context models used to require chunking and lost coherence across chunks; now a single call can hold the whole document, which is a genuinely new workflow."
+        },
+        {
+          "title": "Second Brain Importer",
+          "description": "A personal knowledge assistant that ingests a user's full note history (Notion export, journal, emails) into context and answers questions grounded in years of personal data, sold as a $15/mo consumer app.",
+          "whyNow": "1M tokens is roughly enough for years of personal notes in one shot — previously impossible without heavy retrieval infrastructure a solo dev would have to build themselves."
+        }
+      ]
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Rate limits raised and usage tiers consolidated",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-26",
+      "reasoning": "Raising Sonnet/Haiku rate limits to match Opus at every tier directly removes a restriction (throughput ceilings) that previously blocked building high-volume products on cheaper models — this is a genuine unlock for scaling.",
+      "simpleExplanation": "Anthropic let the cheaper, faster AI models handle way more requests per minute than before — like removing a speed limit so you can serve a lot more customers without upgrading to the expensive model.",
+      "ideas": [
+        {
+          "title": "High-Volume Support Autopilot",
+          "description": "A customer-support automation tool built on Haiku that now handles enterprise-scale ticket volume (thousands/hour) without hitting throttling that used to force customers onto pricier Opus tiers, sold per-seat to SMBs.",
+          "whyNow": "Before this change, high-throughput apps on cheap models needed custom rate-limit negotiations; now the ceiling is raised by default for all tiers."
+        },
+        {
+          "title": "Bulk Content Classifier",
+          "description": "A pipeline that tags/moderates large content streams (marketplace listings, reviews, forum posts) using Sonnet at Opus-level throughput, marketed to platforms too small to build in-house moderation ML.",
+          "whyNow": "The consolidated tiers mean small orgs get bumped up automatically, letting a solo dev promise reliable throughput to customers without enterprise sales calls."
+        }
+      ]
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "SDK support for updated code execution tool",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-18",
+      "reasoning": "Adding REPL state persistence to the code execution tool is a genuine new capability — agents can now maintain variables/state across turns, enabling stateful data-analysis and coding workflows that weren't previously possible via the API.",
+      "simpleExplanation": "The AI's built-in code calculator can now remember what it was working on between steps, like keeping your math homework open on the same page instead of starting over each time.",
+      "ideas": [
+        {
+          "title": "Stateful AI Notebook",
+          "description": "A web app where non-technical users type questions in plain English and Claude runs code in a persistent sandbox, keeping loaded dataframes and variables alive across the whole session — like a no-code data analyst, sold as a $19/mo tool for small businesses.",
+          "whyNow": "Before persistent REPL state, every code call was stateless, forcing awkward re-loading of data each turn; this removes that friction for the first time."
+        },
+        {
+          "title": "Iterative ETL Assistant",
+          "description": "A tool that lets small analytics teams describe data-cleaning steps conversationally, with the agent building up a cleaned dataset across multiple turns without re-uploading or re-parsing raw files each time.",
+          "whyNow": "Programmatic tool calling now requires this feature, meaning tool-based agent products are shifting to this model — an early mover can build tooling around it before it's commoditized."
+        }
+      ]
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Claude Fable 5 and Claude Mythos 5 launched",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-09",
+      "reasoning": "Launch of Anthropic's most capable widely-released model with a 1M context window and always-on adaptive thinking is a genuine new capability tier for complex reasoning tasks a solo dev can build around.",
+      "simpleExplanation": "Anthropic released its smartest AI yet, and it can also read huge amounts of text at once, like an expert who can skim an entire library before answering your question.",
+      "ideas": [
+        {
+          "title": "Deep Legal/Medical Reviewer",
+          "description": "A vertical tool for reviewing dense, high-stakes documents (medical records, patent filings) using Fable 5's top-tier reasoning plus 1M context, targeted at small clinics or solo patent agents who can't afford enterprise legal AI.",
+          "whyNow": "Frontier-tier reasoning with huge context is new; incumbents haven't built vertical products around it yet, giving a window before big players productize it themselves."
+        },
+        {
+          "title": "Whole-Codebase Bug Hunter",
+          "description": "A SaaS that ingests an entire application's codebase and dependency tree in one context window to find cross-file bugs and security issues that chunk-based tools miss, sold to indie SaaS teams.",
+          "whyNow": "Most existing code-review tools still chunk code due to older context limits; this model removes that constraint before tooling catches up."
+        }
+      ]
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Scheduled deployments for Managed Agents",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-09",
+      "reasoning": "Native cron scheduling for Managed Agents removes the need to build and host your own scheduler infrastructure for recurring agent tasks — a genuine capability unlock for building automated, hands-off agent products.",
+      "simpleExplanation": "You can now tell an AI agent to run itself automatically every day (like an alarm clock) instead of you having to build a separate timer system to make it run.",
+      "ideas": [
+        {
+          "title": "Daily Briefing Agent",
+          "description": "A scheduled agent that checks competitor websites, news, or a niche RSS/API feed every morning and emails a digest, sold as a $10/mo micro-SaaS to small business owners who want a personal analyst.",
+          "whyNow": "Before scheduled deployments, developers had to run their own cron server to trigger agents reliably; this removes that infrastructure burden entirely."
+        },
+        {
+          "title": "Uptime & Compliance Watcher",
+          "description": "An agent that runs on a schedule to check a client's website/API health, screenshot key pages, and flag anomalies, packaged as a lightweight monitoring service for solo SaaS founders who don't want to build cron infra themselves.",
+          "whyNow": "Managed scheduling is new — a small team can ship this before larger monitoring vendors integrate similar native agent scheduling."
+        }
+      ]
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Swift package for Apple Foundation Models",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-09",
+      "reasoning": "A Swift package letting Claude serve as a backend LanguageModel inside Apple's Foundation Models framework opens a new integration surface for iOS/macOS/visionOS developers who previously had no first-class way to swap in Claude within that framework.",
+      "simpleExplanation": "Apple has a special toolkit for adding AI 'brains' to iPhone and Mac apps, and now Claude can plug into that toolkit — like a new game controller that finally works with your favorite console.",
+      "ideas": [
+        {
+          "title": "Claude-for-Apple Starter Kit",
+          "description": "A boilerplate/SDK wrapper that lets other indie iOS/macOS developers drop Claude into their apps via Apple's Foundation Models framework in minutes, sold as a one-time license or small subscription to app developers.",
+          "whyNow": "This integration path is brand new (beta) — being an early, well-documented wrapper before Apple's ecosystem fully absorbs it gives a real first-mover advantage."
+        },
+        {
+          "title": "VisionOS Journaling Companion",
+          "description": "A niche journaling/reflection app for visionOS and macOS that uses Claude as its native language model via this framework, targeting the small but growing early-adopter Vision Pro app market.",
+          "whyNow": "Very few apps exist yet for this platform/framework combo, and being early on a beta Apple framework gives visibility before the space gets crowded."
+        }
+      ]
+    }
+  ],
+  "filtered": [
+    {
+      "source": "anthropic-release-notes",
+      "title": "Restored access to Claude Fable 5 and Claude Mythos 5",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-07-01",
+      "reasoning": "This just restores access to two models that were previously pulled — no new capability, pricing, or access change beyond reverting a prior removal."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Managed Agents event deltas support",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-30",
+      "reasoning": "An incremental streaming improvement to an existing agent platform (lower-latency previews), not a new capability or access change."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Backward pagination for session listing",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-30",
+      "reasoning": "Pagination convenience tweak to an existing API, purely an ergonomics fix."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Session-level agent configuration overrides",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-30",
+      "reasoning": "Adds flexibility to an already-existing agent platform feature; useful but incremental, not a new capability class."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Injection location setting for vault credentials",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-30",
+      "reasoning": "Niche configuration option for credential injection within an enterprise-oriented agent vault feature."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Expanded webhook coverage for agent lifecycle",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-30",
+      "reasoning": "Expands webhook event coverage on an existing platform — nice quality-of-life improvement for reducing polling, but not a new capability or access unlock on its own."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Fast mode removed for Claude Opus 4.6",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-29",
+      "reasoning": "A feature removal/migration notice, not a new capability."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Fast mode deprecated for Claude Opus 4.7",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-25",
+      "reasoning": "Deprecation notice pushing users to migrate models — no new capability."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "MCP tunnels API moved to new endpoint",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-22",
+      "reasoning": "Internal API endpoint relocation for a research-preview feature (MCP tunnels), not relevant to most solo builders."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Retirement of Claude Sonnet 4 and Opus 4 models",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-15",
+      "reasoning": "Model retirement/forced migration — no new capability."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Code execution tool discloses execution time limit",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-11",
+      "reasoning": "Disclosing an existing execution time limit so the model can plan better — minor internal improvement, no new capability for developers."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Web search and fetch tools add response_inclusion parameter",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-11",
+      "reasoning": "A parameter to trim response payloads for agentic workflows — an efficiency tweak, not a new capability."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Pending work endpoint available on AWS",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-10",
+      "reasoning": "Regional/platform rollout (AWS) of an already-existing endpoint, not a new capability."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "New tokenizer for Fable 5 and Mythos 5",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-09",
+      "reasoning": "A tokenizer change that increases token counts (effectively raising cost per text) — a cost/accounting detail, not a new capability or opportunity."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Refusal handling and fallback model support",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-09",
+      "reasoning": "A reliability/fallback feature for handling refusals — useful for robustness but a minor operational feature, not a new product surface."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "New refusal category for reasoning extraction",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-09",
+      "reasoning": "A new classification label on refusal responses — internal detail with no new capability."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Adaptive thinking is the only mode on Fable 5 and Mythos 5",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-09",
+      "reasoning": "Actually removes developer control (manual thinking modes no longer supported) — a restriction added, not removed; no opportunity."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Thinking display defaults to omitted",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-09",
+      "reasoning": "Default behavior change for a display setting, cosmetic/API consistency change."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Data retention requirement for Fable 5",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-09",
+      "reasoning": "A restriction (mandatory 30-day retention, no zero-data-retention option) — this closes options rather than opening them, relevant mainly to privacy-sensitive enterprise customers."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Environment variable credentials in vaults",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-09",
+      "reasoning": "Secure credential injection for agent sandboxes — a useful but incremental security/infra feature on an existing platform, not a standalone new opportunity."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Thread ID added to webhook events",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-06-09",
+      "reasoning": "Adds a field to webhook payloads, a minor data-plumbing improvement."
+    },
+    {
+      "source": "twilio-changelog",
+      "title": "\nConference list endpoint rollout extended\n",
+      "url": "\nhttps://www.twilio.com/en-us/changelog/conference-list-endpoint-rollout-extended\n",
+      "date": "2026-07-08T06:00:00.000Z",
+      "reasoning": "Twilio delaying a previously announced breaking change to an endpoint — pure rollout timing adjustment, not a new capability."
+    }
+  ],
+  "errors": []
+}
