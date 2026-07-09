@@ -11,6 +11,9 @@ const SOURCE_META = {
   'cloudflare-blog': { name: 'Cloudflare', category: 'Infra', emoji: '\u{1F310}', color: '#ffe9e9' },
   'vercel-news': { name: 'Vercel', category: 'Hosting', emoji: '▲', color: '#ececec' },
   'supabase-changelog': { name: 'Supabase', category: 'Backend', emoji: '⚡', color: '#e3fff0' },
+  'google-ai-blog': { name: 'Google AI', category: 'AI', emoji: '\u{1F535}', color: '#e6f0ff' },
+  'mistral-news': { name: 'Mistral AI', category: 'AI', emoji: '\u{1F343}', color: '#fff0e6' },
+  'apple-developer-releases': { name: 'Apple', category: 'Platforms', emoji: '\u{1F34E}', color: '#f0f0f0' },
 };
 const DEFAULT_META = { name: 'Unknown', category: 'Other', emoji: '\u{1F4E6}', color: '#eee' };
 

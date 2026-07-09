@@ -59,7 +59,10 @@ async function fetchMarkdownEntries(source) {
   });
 
   return extracted.map((entry) => ({
-    id: stableId(source.id, entry.date, entry.title),
+    // Hashed by date only, not title: the LLM rephrases titles slightly
+    // between runs, which would otherwise cause the same already-seen
+    // entry to look "new" again every time wording drifts.
+    id: stableId(source.id, entry.date),
     title: entry.title,
     url: source.url.replace(/\.md$/, ''),
     date: entry.date ?? null,

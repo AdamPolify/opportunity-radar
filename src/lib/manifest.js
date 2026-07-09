@@ -15,6 +15,10 @@ export async function loadManifest() {
 
 export async function appendToManifest({ file, digest }) {
   const manifest = await loadManifest();
+  // If a run happens twice on the same day, the second run overwrites the
+  // same digests/<date>.json file -- replace the existing manifest entry
+  // instead of adding a duplicate that points at the same (now-different) file.
+  manifest.digests = manifest.digests.filter((d) => d.file !== file);
   manifest.digests.unshift({
     file,
     generatedAt: digest.generatedAt,

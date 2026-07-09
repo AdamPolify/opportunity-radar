@@ -1,6 +1,13 @@
 // Every source below is fetched with a plain HTTP GET — no headless browser,
 // no API keys required for fetching. Verified working as of 2026-07-09.
 //
+// Sources considered but skipped because they require a JS-rendered
+// headless browser (against this project's zero-maintenance goal): the
+// OpenAI API changelog page itself (openai-news is used instead), Google
+// Gemini's changelog page (google-ai-blog is used instead), Meta AI / Llama,
+// Mistral's dedicated changelog page (mistral-news blog RSS used instead),
+// and xAI/Grok (no public RSS or markdown-twin changelog found).
+//
 // type: 'rss'      -> standard RSS/Atom feed, parsed with rss-parser
 // type: 'markdown' -> a docs page that serves clean Markdown when ".md" is
 //                      appended to the URL (Mintlify-style docs convention).
@@ -28,6 +35,27 @@ export const SOURCES = [
     category: 'Payments',
     type: 'markdown',
     url: 'https://docs.stripe.com/changelog.md',
+  },
+  {
+    id: 'google-ai-blog',
+    name: 'Google AI Blog',
+    category: 'AI',
+    type: 'rss',
+    url: 'https://blog.google/technology/ai/rss/',
+  },
+  {
+    id: 'mistral-news',
+    name: 'Mistral AI',
+    category: 'AI',
+    type: 'rss',
+    url: 'https://mistral.ai/rss.xml',
+  },
+  {
+    id: 'apple-developer-releases',
+    name: 'Apple Developer Releases',
+    category: 'Platforms',
+    type: 'rss',
+    url: 'https://developer.apple.com/news/releases/rss/releases.rss',
   },
   {
     id: 'github-changelog',
