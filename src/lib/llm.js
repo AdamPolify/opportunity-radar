@@ -115,7 +115,7 @@ export async function analyzeEntries(entries) {
 
   const msg = await client().messages.create({
     model: MODEL,
-    max_tokens: 8000,
+    max_tokens: 32000,
     system: ANALYSIS_SYSTEM_PROMPT,
     messages: [
       {
