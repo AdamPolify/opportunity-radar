@@ -37,6 +37,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Send email digest
+        if: ${{ secrets.MAIL_SERVER != '' && secrets.EMAIL_TO != '' }}
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: ${{ secrets.MAIL_SERVER }}
