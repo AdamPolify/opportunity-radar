@@ -2,7 +2,6 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 
 const STATE_PATH = path.join(process.cwd(), 'data', 'state.json');
-const MAX_SEEN_PER_SOURCE = 500; // cap so the state file doesn't grow forever
 
 export async function loadState() {
   try {
@@ -18,18 +17,13 @@ export async function loadState() {
 
 export async function saveState(state) {
   await mkdir(path.dirname(STATE_PATH), { recursive: true });
-  // Trim each source's seen-id list to the most recent MAX_SEEN_PER_SOURCE
-  // entries so this file stays small and diff-friendly in git.
-  const trimmed = {
-    ...state,
-    seen: Object.fromEntries(
-      Object.entries(state.seen).map(([sourceId, ids]) => [
-        sourceId,
-        ids.slice(-MAX_SEEN_PER_SOURCE),
-      ])
-    ),
-  };
-  await writeFile(STATE_PATH, JSON.stringify(trimmed, null, 2) + '\n', 'utf-8');
+  // Deliberately no cap/trim on seen-id lists: some sources (e.g. the
+  // OpenAI news RSS feed) return their full historical archive on every
+  // fetch, not just recent items, so any trim risks discarding an entry
+  // that's still present in the feed -- which makes it look "new" again on
+  // a later run. A few thousand 16-char hashes per source is a small price
+  // (low hundreds of KB) for correctness.
+  await writeFile(STATE_PATH, JSON.stringify(state, null, 2) + '\n', 'utf-8');
 }
 
 export function isSeen(state, sourceId, entryId) {
