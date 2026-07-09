@@ -33,7 +33,10 @@ async function main() {
 
   await writeFile(path.join(process.cwd(), 'data', 'latest-email.html'), renderEmailHtml(digest), 'utf-8');
   await writeFile(path.join(process.cwd(), 'data', 'latest-email.txt'), renderEmailText(digest), 'utf-8');
-  await writeFile(path.join(process.cwd(), 'data', 'latest-subject.txt'), renderEmailSubject(digest), 'utf-8');
+  // Trailing newline matters: the workflow's `cat file` + `echo "EOF"` heredoc
+  // trick needs the EOF delimiter on its own line, which requires the file
+  // to already end in a newline.
+  await writeFile(path.join(process.cwd(), 'data', 'latest-subject.txt'), renderEmailSubject(digest) + '\n', 'utf-8');
 
   if (!DRY_RUN) {
     await appendToManifest({ file: `digests/${filename}`, digest });
