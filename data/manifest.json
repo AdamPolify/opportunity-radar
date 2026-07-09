@@ -2,11 +2,11 @@
   "digests": [
     {
       "file": "digests/2026-07-09.json",
-      "generatedAt": "2026-07-09T01:04:11.379Z",
+      "generatedAt": "2026-07-09T22:54:58.124Z",
       "isBootstrap": false,
-      "weekSummary": "A heavy week of Anthropic platform updates, but most are deprecations, internal API migrations, or incremental agent-platform tweaks that don't open new building opportunities. The real signals are the Sonnet 5 and Fable 5 launches (big context windows, introductory pricing), the rate-limit increase that removes a real throughput bottleneck, the code execution tool's new persistent state, native cron scheduling for Managed Agents, and a new Swift/Apple integration path — each of these is a genuine, buildable opportunity worth a closer look.",
-      "opportunityCount": 6,
-      "filteredCount": 22
+      "weekSummary": "Nothing new published across any tracked source this week.",
+      "opportunityCount": 0,
+      "filteredCount": 0
     }
   ]
 }
