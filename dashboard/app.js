@@ -63,7 +63,7 @@ function renderHero(story) {
     <article class="hero-card" data-id="${id}">
       <div class="hero-banner" style="background:${m.color};">${m.emoji}</div>
       <div class="hero-body">
-        <div class="source-row"><span class="source-emoji">${m.emoji}</span>${escapeHtml(m.name)}</div>
+        <div class="source-row"><span class="source-emoji">${m.emoji}</span>${escapeHtml(m.name)}${story.manuallyCurated ? ' <span class="curated-tag">MANUALLY CURATED</span>' : ''}</div>
         <h2>${escapeHtml(story.title)}</h2>
         <div class="meta-row">${timeAgo(story.date || story.digestDate)} &middot; ${escapeHtml(story.reasoning.slice(0, 80))}${story.reasoning.length > 80 ? '…' : ''}</div>
       </div>
@@ -78,7 +78,7 @@ function renderStoryCard(story) {
       <div class="story-thumb" style="background:${m.color};">${m.emoji}</div>
       <div class="story-text">
         <h3>${escapeHtml(story.title)}</h3>
-        <div class="meta-row">${escapeHtml(m.name)} &middot; ${timeAgo(story.date || story.digestDate)}</div>
+        <div class="meta-row">${escapeHtml(m.name)} &middot; ${timeAgo(story.date || story.digestDate)}${story.manuallyCurated ? ' <span class="curated-tag">MANUALLY CURATED</span>' : ''}</div>
       </div>
     </article>`;
 }
@@ -102,9 +102,10 @@ function openSheet(id) {
   if (kind === 'opportunity') {
     content.innerHTML = `
       <div class="sheet-banner" style="background:${m.color};">${m.emoji}</div>
-      <div class="source-row"><span class="source-emoji">${m.emoji}</span>${escapeHtml(m.name)}</div>
+      <div class="source-row"><span class="source-emoji">${m.emoji}</span>${escapeHtml(m.name)}${payload.manuallyCurated ? ' <span class="curated-tag">MANUALLY CURATED</span>' : ''}</div>
       <h2>${escapeHtml(payload.title)}</h2>
       <div class="meta-row">${timeAgo(payload.date || payload.digestDate)}</div>
+      ${payload.manuallyCurated ? `<div class="curation-banner">${escapeHtml(payload.curationNote || 'This week was assembled by hand, not the automated pipeline.')}</div>` : ''}
       <div class="eli10-box">
         <div class="eli10-label">In simple terms</div>
         <p>${escapeHtml(payload.simpleExplanation || payload.reasoning)}</p>
@@ -217,7 +218,12 @@ async function main() {
         continue;
       }
       for (const opp of digest.opportunities) {
-        stories.push({ ...opp, digestDate: digest.generatedAt });
+        stories.push({
+          ...opp,
+          digestDate: digest.generatedAt,
+          manuallyCurated: !!digest.manuallyCurated,
+          curationNote: digest.curationNote,
+        });
       }
       if (digest.filtered.length > 0) {
         filteredByWeek.push({ generatedAt: digest.generatedAt, items: digest.filtered });
@@ -234,6 +240,9 @@ async function main() {
       html += `<div class="quiet-card">${escapeHtml(latestReal ? latestReal.weekSummary : 'Nothing to show yet.')}</div>`;
     } else {
       html += '<h2 class="section-heading">Top Stories</h2>';
+      if (stories[0].manuallyCurated) {
+        html += `<div class="curation-banner"><strong>Manually curated week.</strong> ${escapeHtml(stories[0].curationNote || '')}</div>`;
+      }
       html += renderHero(stories[0]);
       html += '<div class="card-list">' + stories.slice(1).map(renderStoryCard).join('') + '</div>';
     }
