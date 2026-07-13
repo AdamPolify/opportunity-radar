@@ -1,6 +1,14 @@
 {
   "digests": [
     {
+      "file": "digests/2026-07-13.json",
+      "generatedAt": "2026-07-13T18:52:02.351Z",
+      "isBootstrap": false,
+      "weekSummary": "A quiet week dominated by routine AWS infrastructure rollouts, GitHub UI polish, and Anthropic admin/ops tweaks — almost none of it opens new capability for solo builders. The few genuine openings are Amazon Location Service's new address/drive-thru data, a strong new text-accurate image model (Seedream 5.0 Pro) now trivially callable via Vercel's AI Gateway, and the new Lovable-to-Vercel deploy integration creating a fresh, non-technical user segment worth building tooling around.",
+      "opportunityCount": 3,
+      "filteredCount": 32
+    },
+    {
       "file": "digests/2026-07-09.json",
       "generatedAt": "2026-07-09T23:53:05.562Z",
       "isBootstrap": false,
