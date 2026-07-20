@@ -1,0 +1,970 @@
+{
+  "generatedAt": "2026-07-20T19:16:23.606Z",
+  "isBootstrap": false,
+  "weekSummary": "A mostly quiet week dominated by AWS regional rollouts, infra version bumps, and enterprise/compliance features, plus a wave of OpenAI/Google blog and policy posts with no new developer capabilities. The few genuine openings were on the periphery: Twilio's new phone-reachability lookup API, Vercel making Sandbox data downloads free, Vercel's new Web Analytics API and open AI Gateway leaderboard data, Chat SDK's Slack adapter, and AgentMail's marketplace integration — each a concrete, buildable opening for a solo developer.",
+  "opportunities": [
+    {
+      "source": "twilio-changelog",
+      "title": "\nLookup Line Status Public Beta is now available!\n",
+      "url": "\nhttps://www.twilio.com/en-us/changelog/lookup-line-status\n",
+      "date": "2026-07-14T05:00:00.000Z",
+      "reasoning": "New public API capability: Twilio's Lookup Line Status beta lets you check whether a phone number is active, inactive, reachable, or unreachable — this is new data access that didn't exist before and is directly usable by a solo dev to build validation tools.",
+      "simpleExplanation": "Twilio now lets you check if a phone number is 'alive' (someone could actually answer it) before you even call or text it — like checking if a mailbox is still in use before mailing a letter.",
+      "ideas": [
+        {
+          "title": "Phone List Scrubber",
+          "description": "A web app where marketers upload a CSV of phone numbers and get back a cleaned list flagging dead, unreachable, or invalid numbers before running SMS or cold-call campaigns. Charge per lookup or a flat monthly fee for unlimited scrubbing under a volume cap.",
+          "whyNow": "The Line Status capability is brand new (public beta) and not yet baked into mainstream CRM or marketing tools, giving a first-mover window before Twilio competitors or CRMs add it natively."
+        },
+        {
+          "title": "Signup Fraud Filter",
+          "description": "A small API/widget for e-commerce and SaaS signup forms that validates phone number reachability in real time, blocking bot signups using disconnected or fake numbers. Sell as a per-request API to indie SaaS builders.",
+          "whyNow": "Most anti-fraud tools rely on carrier lookups that don't expose reachability; this new beta status field is a specific, previously-unavailable signal."
+        }
+      ]
+    },
+    {
+      "source": "vercel-news",
+      "title": "Data downloaded by Vercel Sandbox is now free",
+      "url": "https://vercel.com/changelog/data-downloaded-by-vercel-sandbox-is-now-free",
+      "date": "2026-07-17T07:01:00.000Z",
+      "reasoning": "Vercel Sandbox no longer bills for data downloaded from the internet (installing packages, cloning repos, pulling datasets) — a meaningful pricing change that removes a cost barrier for building products that spin up lots of ephemeral code-execution environments.",
+      "simpleExplanation": "Vercel's 'sandbox' (a temporary computer in the cloud where code can run safely) used to charge you for downloading stuff into it, like installing programs or copying files from the internet — now that part is free.",
+      "ideas": [
+        {
+          "title": "Instant Repo Playground",
+          "description": "A tool where anyone pastes a public GitHub URL and instantly gets a live, runnable preview of the repo in the browser (installs deps, runs it) using Vercel Sandbox under the hood. Monetize via a pro tier for private repos or longer session times.",
+          "whyNow": "Previously, heavy package installs and repo cloning inside Sandbox would rack up data-transfer costs; now that's free, making a high-volume, low-margin product like this economically viable for a solo dev."
+        },
+        {
+          "title": "Coding-Agent Test Runner API",
+          "description": "A hosted API for other developers building AI coding agents: spin up isolated sandboxes, clone the target repo, install dependencies, and run test suites or linters, returning pass/fail results. Sell metered API access to indie AI-agent builders who don't want to manage their own sandboxing infra.",
+          "whyNow": "The cost of the heaviest sandbox operations (cloning + installing) just dropped to zero, letting you price this competitively against alternatives that still pay for data transfer."
+        }
+      ]
+    },
+    {
+      "source": "vercel-news",
+      "title": "Chat SDK adds native Slack agent support",
+      "url": "https://vercel.com/changelog/chat-sdk-adds-native-slack-agent-support",
+      "date": "2026-07-17T00:00:00.000Z",
+      "reasoning": "Chat SDK's new Slack adapter gives a concrete, ready-made way to build full-featured Slack AI agents (streaming replies, suggested prompts, feedback buttons) that didn't exist before in this SDK — a genuine capability speeding up a specific product category.",
+      "simpleExplanation": "There's now a ready-made toolkit for building smart chatbots that live inside Slack and can chat back and forth like a real assistant, including little thumbs up/down buttons — before, developers had to build all that by hand.",
+      "ideas": [
+        {
+          "title": "Vertical Slack Support Bot",
+          "description": "Build a niche AI assistant for a specific industry (e.g., dev agencies, e-commerce ops teams) that lives in Slack, triages incoming questions, and drafts responses using the new adapter's streaming and feedback-button features. Sell as $19–49/mo per workspace.",
+          "whyNow": "The adapter just shipped, handling the hard parts (streaming, threading quirks, suggested prompts) — a narrow window exists before generic Slack-bot builders catch up with the same polish."
+        },
+        {
+          "title": "Standup & Digest Bot",
+          "description": "A Slack bot that reads channel activity, summarizes it into a daily standup digest, and lets users react/upvote items — built entirely on Chat SDK's new adapter in a few days rather than weeks.",
+          "whyNow": "Building this well (threading, streaming, native feedback UI) used to require significant custom Slack API work; now it's a template away."
+        }
+      ]
+    },
+    {
+      "source": "vercel-news",
+      "title": "AgentMail joins the Vercel Marketplace",
+      "url": "https://vercel.com/changelog/agentmail-vercel-marketplace",
+      "date": "2026-07-14T00:00:00.000Z",
+      "reasoning": "AgentMail joining the Vercel Marketplace gives solo devs one-click provisioning of real, deliverable email inboxes for AI agents — a genuine new integration surface (agents that can send/receive real email) that's now trivial to wire up rather than requiring you to build mail infrastructure yourself.",
+      "simpleExplanation": "Now any small app on Vercel can instantly get its own real email inbox that an AI robot can read and reply to — like giving your robot assistant its own mailbox without you having to build a post office.",
+      "ideas": [
+        {
+          "title": "AI Support Inbox for Indie SaaS",
+          "description": "A drop-in support@ inbox for small SaaS products where an AI agent reads incoming customer emails, drafts replies, and escalates anything it's unsure about to the founder via Slack. Sell as a $15–30/mo add-on for other indie SaaS builders.",
+          "whyNow": "Provisioning a working, deliverable inbox used to require dealing with mail servers and deliverability reputation; AgentMail plus one-click Marketplace install removes that entirely, making this buildable in days."
+        },
+        {
+          "title": "Cold Outreach Auto-Responder",
+          "description": "A tool for solo founders/agencies doing cold email outreach: provisions a dedicated sending inbox via AgentMail, auto-drafts replies to interested leads, and forwards hot replies to a CRM or Slack channel.",
+          "whyNow": "Real email deliverability (not just an API webhook) is the hard part of building this; AgentMail's marketplace integration solves it turnkey, before competitors build the same thing from scratch."
+        }
+      ]
+    },
+    {
+      "source": "vercel-news",
+      "title": "Access and share AI Gateway leaderboard data",
+      "url": "https://vercel.com/changelog/open-data-and-shareable-charts-for-ai-gateway-leaderboards",
+      "date": "2026-07-14T00:00:00.000Z",
+      "reasoning": "Vercel is open-sourcing the data behind its AI Gateway leaderboards (CC BY 4.0) with a queryable export API — this is new, previously-unavailable data access that a solo dev could build products or content on top of.",
+      "simpleExplanation": "Vercel is now letting anyone download or peek at the data showing which AI models people use the most, for free, instead of keeping it locked away just for their own charts.",
+      "ideas": [
+        {
+          "title": "State-of-AI-Models Dashboard",
+          "description": "A public website/newsletter auto-updating daily with rankings of AI model/provider adoption, pulled via the export endpoint, monetized through sponsorships or a paid deeper-analytics tier.",
+          "whyNow": "The data just became open and queryable; being early means you can own the 'go-to source' position before others build similar dashboards on the same open dataset."
+        },
+        {
+          "title": "Model Picker Widget",
+          "description": "An embeddable widget/API for developer blogs and docs sites that shows live, ranked model pricing/adoption trends, helping readers pick which LLM to use — built once and licensed to multiple sites.",
+          "whyNow": "This exact combination of live usage data plus a stable public export endpoint didn't exist until this release."
+        }
+      ]
+    },
+    {
+      "source": "vercel-news",
+      "title": "Public Web Analytics API now available",
+      "url": "https://vercel.com/changelog/web-analytics-api",
+      "date": "2026-05-18T00:00:00.000Z",
+      "reasoning": "A new public API exposing programmatic access to Web Analytics data (page views, visitors, custom events) that was previously locked inside the dashboard — this is a new data/integration surface a solo dev can build products around.",
+      "simpleExplanation": "Vercel now lets you pull your website's visitor stats directly through code, not just look at them on a webpage — so you can build your own charts or tools using that data.",
+      "ideas": [
+        {
+          "title": "White-Label Client Reporting Portal",
+          "description": "A tool for agencies managing multiple client sites on Vercel: pulls each client's Web Analytics data via the new API and generates a single branded reporting dashboard/PDF, sold as a $49/mo agency tool replacing manual screenshotting.",
+          "whyNow": "Programmatic access to this data is brand new; agencies previously had to give clients dashboard logins or manually export screenshots."
+        },
+        {
+          "title": "Embeddable Live Traffic Widget",
+          "description": "A drop-in widget/npm package that indie SaaS founders can embed in their own customer-facing admin panels to show live visitor counts and top routes, powered by the new API, sold as a small licensing fee per site.",
+          "whyNow": "This exact self-serve API access point didn't exist before, removing the need to build custom analytics pipelines just to expose basic stats to end users."
+        }
+      ]
+    }
+  ],
+  "filtered": [
+    {
+      "source": "openai-news",
+      "title": "Safety and alignment in an era of long-horizon models",
+      "url": "https://openai.com/index/safety-alignment-long-horizon-models",
+      "date": "2026-07-20T10:00:00.000Z",
+      "reasoning": "A safety/policy blog post about long-horizon model deployment lessons — no new API, capability, or pricing change."
+    },
+    {
+      "source": "openai-news",
+      "title": "A scorecard for the AI age",
+      "url": "https://openai.com/index/a-scorecard-for-the-ai-age",
+      "date": "2026-07-17T10:00:00.000Z",
+      "reasoning": "A CFO's framework for measuring AI ROI — a thought-leadership post, not a product capability."
+    },
+    {
+      "source": "openai-news",
+      "title": "Why teens deserve access to safe AI",
+      "url": "https://openai.com/index/why-teens-deserve-access-safe-ai",
+      "date": "2026-07-16T16:00:00.000Z",
+      "reasoning": "Consumer safety/policy announcement about teen protections in ChatGPT — no new developer-facing capability."
+    },
+    {
+      "source": "openai-news",
+      "title": "How Cars24 scales conversations and builds faster with OpenAI",
+      "url": "https://openai.com/index/cars24",
+      "date": "2026-07-16T00:00:00.000Z",
+      "reasoning": "A customer case study/marketing piece about Cars24's use of OpenAI — nothing new to build on."
+    },
+    {
+      "source": "openai-news",
+      "title": "The US is advancing AI safety through state and federal action",
+      "url": "https://openai.com/index/advancing-ai-safety-through-state-and-federal-action",
+      "date": "2026-07-15T12:00:00.000Z",
+      "reasoning": "Policy/governance commentary, not a product or API change."
+    },
+    {
+      "source": "openai-news",
+      "title": "GPT-Red: Unlocking Self-Improvement for Robustness",
+      "url": "https://openai.com/index/unlocking-self-improvement-gpt-red",
+      "date": "2026-07-15T10:00:00.000Z",
+      "reasoning": "Internal red-teaming research description — no external API or capability released for developers."
+    },
+    {
+      "source": "openai-news",
+      "title": "How to manage AI investments in the agentic era",
+      "url": "https://openai.com/index/managing-ai-investments-in-agentic-era",
+      "date": "2026-07-14T10:00:00.000Z",
+      "reasoning": "Enterprise investment-management advice article — not a product capability."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Legacy Workbench and experimental prompt tools APIs sunset",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-07-17",
+      "reasoning": "This is a deprecation/removal of legacy tools (Workbench, prompt APIs), not a new capability — actively reduces what's available."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Mid-conversation system messages availability correction",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-07-15",
+      "reasoning": "A documentation correction confirming existing availability of a feature, not a new capability."
+    },
+    {
+      "source": "anthropic-release-notes",
+      "title": "Admin API user management for Claude Enterprise",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "date": "2026-07-14",
+      "reasoning": "Admin/org-management API for Claude Enterprise — enterprise IT tooling, irrelevant to solo builders."
+    },
+    {
+      "source": "google-ai-blog",
+      "title": "Connect more of your apps to Search",
+      "url": "https://blog.google/products-and-platforms/products/search/connected-apps/",
+      "date": "2026-07-16T16:00:00.000Z",
+      "reasoning": "Vague consumer-facing announcement about linking apps to Google Search's AI Mode — no concrete developer API described yet."
+    },
+    {
+      "source": "google-ai-blog",
+      "title": "Create, edit and star in videos with two Google Vids updates",
+      "url": "https://blog.google/products-and-platforms/products/workspace/gemini-omni-personal-avatars/",
+      "date": "2026-07-16T16:00:00.000Z",
+      "reasoning": "Consumer video-creation feature in Google Vids — not a developer capability."
+    },
+    {
+      "source": "google-ai-blog",
+      "title": "Celebrating 25 years of visual search innovation",
+      "url": "https://blog.google/products-and-platforms/products/search/google-images-25th-anniversary/",
+      "date": "2026-07-14T16:00:00.000Z",
+      "reasoning": "Anniversary retrospective/marketing post for Google Images."
+    },
+    {
+      "source": "apple-developer-releases",
+      "title": "iOS 27.0 beta 4 (24A5390f)",
+      "url": "https://developer.apple.com/news/releases/?id=07202026g",
+      "date": "2026-07-20T17:00:00.000Z",
+      "reasoning": "Routine OS beta release."
+    },
+    {
+      "source": "apple-developer-releases",
+      "title": "iPadOS 27.0 beta 4 (24A5390f)",
+      "url": "https://developer.apple.com/news/releases/?id=07202026h",
+      "date": "2026-07-20T17:00:00.000Z",
+      "reasoning": "Routine OS beta release."
+    },
+    {
+      "source": "apple-developer-releases",
+      "title": "macOS 27.0 beta 4 (26A5388g)",
+      "url": "https://developer.apple.com/news/releases/?id=07202026i",
+      "date": "2026-07-20T17:00:00.000Z",
+      "reasoning": "Routine OS beta release."
+    },
+    {
+      "source": "apple-developer-releases",
+      "title": "tvOS 27.0 beta 4 (24J5325d)",
+      "url": "https://developer.apple.com/news/releases/?id=07202026j",
+      "date": "2026-07-20T17:00:00.000Z",
+      "reasoning": "Routine OS beta release."
+    },
+    {
+      "source": "apple-developer-releases",
+      "title": "iOS 26.6 RC (23G71)",
+      "url": "https://developer.apple.com/news/releases/?id=07202026a",
+      "date": "2026-07-20T17:00:00.000Z",
+      "reasoning": "Routine OS release candidate."
+    },
+    {
+      "source": "apple-developer-releases",
+      "title": "iPadOS 26.6 RC (23G71)",
+      "url": "https://developer.apple.com/news/releases/?id=07202026b",
+      "date": "2026-07-20T17:00:00.000Z",
+      "reasoning": "Routine OS release candidate."
+    },
+    {
+      "source": "apple-developer-releases",
+      "title": "macOS 26.6 RC (25G70)",
+      "url": "https://developer.apple.com/news/releases/?id=07202026c",
+      "date": "2026-07-20T17:00:00.000Z",
+      "reasoning": "Routine OS release candidate."
+    },
+    {
+      "source": "apple-developer-releases",
+      "title": "tvOS 26.6 RC (23L772)",
+      "url": "https://developer.apple.com/news/releases/?id=07202026d",
+      "date": "2026-07-20T17:00:00.000Z",
+      "reasoning": "Routine OS release candidate."
+    },
+    {
+      "source": "apple-developer-releases",
+      "title": "visionOS 26.6 RC (23O770)",
+      "url": "https://developer.apple.com/news/releases/?id=07202026e",
+      "date": "2026-07-20T17:00:00.000Z",
+      "reasoning": "Routine OS release candidate."
+    },
+    {
+      "source": "apple-developer-releases",
+      "title": "watchOS 26.6 RC (23U67)",
+      "url": "https://developer.apple.com/news/releases/?id=07202026f",
+      "date": "2026-07-20T17:00:00.000Z",
+      "reasoning": "Routine OS release candidate."
+    },
+    {
+      "source": "apple-developer-releases",
+      "title": "App Store Connect API 4.4.1",
+      "url": "https://developer.apple.com/news/releases/?id=07152026a",
+      "date": "2026-07-15T21:00:00.000Z",
+      "reasoning": "Minor point-release of an internal admin API."
+    },
+    {
+      "source": "github-changelog",
+      "title": "AI credit pools for cost centers in the billing UI",
+      "url": "https://github.blog/changelog/2026-07-20-ai-credit-pools-for-cost-centers-in-the-billing-ui",
+      "date": "2026-07-20T18:24:14.000Z",
+      "reasoning": "Billing UI convenience feature for enterprise cost centers — internal admin tooling."
+    },
+    {
+      "source": "github-changelog",
+      "title": "Copilot users can now see AI credits used per billing cycle",
+      "url": "https://github.blog/changelog/2026-07-20-copilot-users-can-now-see-ai-credits-used-per-billing-cycle",
+      "date": "2026-07-20T16:00:14.000Z",
+      "reasoning": "Usage visibility feature for Copilot Business/Enterprise billing — not a new capability for building products."
+    },
+    {
+      "source": "github-changelog",
+      "title": "GitHub Code Quality is now generally available",
+      "url": "https://github.blog/changelog/2026-07-20-github-code-quality-is-now-generally-available",
+      "date": "2026-07-20T13:01:24.000Z",
+      "reasoning": "GA of a code-quality tool for Enterprise Cloud/Team tiers — something you use inside GitHub, not a platform you build products on top of."
+    },
+    {
+      "source": "github-changelog",
+      "title": "Repository-level GitHub Copilot usage metrics generally available",
+      "url": "https://github.blog/changelog/2026-07-17-repository-level-github-copilot-usage-metrics-generally-available",
+      "date": "2026-07-17T22:05:18.000Z",
+      "reasoning": "Additional reporting granularity in an admin/usage metrics API — enterprise analytics, not a new building block."
+    },
+    {
+      "source": "github-changelog",
+      "title": "GitHub Copilot app now available in the usage metrics API",
+      "url": "https://github.blog/changelog/2026-07-17-github-copilot-app-now-available-in-the-usage-metrics-api",
+      "date": "2026-07-17T22:05:11.000Z",
+      "reasoning": "Incremental addition to an existing admin usage metrics API."
+    },
+    {
+      "source": "github-changelog",
+      "title": "Copilot code review: Customization and configurability improvements",
+      "url": "https://github.blog/changelog/2026-07-17-copilot-code-review-customization-and-configurability-improvements",
+      "date": "2026-07-17T21:08:30.000Z",
+      "reasoning": "Configurability improvements to Copilot code review — internal workflow tweak, not a new capability."
+    },
+    {
+      "source": "github-changelog",
+      "title": "GitHub Mobile: Fix pull request comments with Copilot cloud agent",
+      "url": "https://github.blog/changelog/2026-07-17-github-mobile-fix-pull-request-comments-with-copilot-cloud-agent",
+      "date": "2026-07-17T19:47:45.000Z",
+      "reasoning": "Mobile UI convenience feature for an existing capability."
+    },
+    {
+      "source": "github-changelog",
+      "title": "Advanced search for Projects is generally available",
+      "url": "https://github.blog/changelog/2026-07-16-advanced-search-for-projects-is-generally-available",
+      "date": "2026-07-16T19:07:14.000Z",
+      "reasoning": "Search/filter UI improvement in GitHub Projects — minor productivity tweak."
+    },
+    {
+      "source": "github-changelog",
+      "title": "Repository admins can archive pull requests",
+      "url": "https://github.blog/changelog/2026-07-16-repository-admins-can-archive-pull-requests",
+      "date": "2026-07-16T19:01:09.000Z",
+      "reasoning": "Small repo-management convenience feature (archiving PRs)."
+    },
+    {
+      "source": "github-changelog",
+      "title": "REST API endpoints for Visual Studio Subscription management",
+      "url": "https://github.blog/changelog/2026-07-16-rest-api-endpoints-for-visual-studio-subscription-management",
+      "date": "2026-07-16T18:06:52.000Z",
+      "reasoning": "Admin API for managing Visual Studio Subscriptions — enterprise licensing tooling, irrelevant to solo devs."
+    },
+    {
+      "source": "twilio-changelog",
+      "title": "\nError code 30915 now flags invalid Sole Proprietor classification for both A2P 10DLC and Toll-Free Verification\n",
+      "url": "\nhttps://www.twilio.com/en-us/changelog/error-code-30915-now-flags-invalid-sole-proprietor-classificatio\n",
+      "date": "2026-07-17T04:00:00.000Z",
+      "reasoning": "A compliance/error-code clarification for A2P 10DLC registration — routine regulatory housekeeping, no new capability."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Selectively log network activity events by identity in AWS CloudTrail",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/aws-cloudtrail-filter-useridentity-advance-selectors/",
+      "date": "2026-07-20T17:34:00.000Z",
+      "reasoning": "Security/logging filtering enhancement for enterprise CloudTrail users — not relevant to solo dev product building."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": " Amazon Connect delivers more natural agentic voice experiences with expanded language support and speech controls",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-connect-agentic-voice/",
+      "date": "2026-07-20T16:16:00.000Z",
+      "reasoning": "Expanded language/voice options for Amazon Connect's contact-center product — enterprise CCaaS feature, not a new open capability for indie builders."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon Managed Service for Apache Flink now supports Apache Flink 2.3",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-managed-service-flink-2-3/",
+      "date": "2026-07-20T15:00:00.000Z",
+      "reasoning": "Version bump/performance improvements to a managed Flink service — infrastructure upgrade, no new capability."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon CloudWatch announces coding agent insights",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/cloudwatch-coding-agent-insights/",
+      "date": "2026-07-20T09:51:00.000Z",
+      "reasoning": "Enterprise engineering-metrics dashboard for coding agent ROI — internal ops tooling for large orgs."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Introducing KNFSD File Cache - Now in Preview  ",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/knfsd-file-cache/",
+      "date": "2026-07-20T08:00:00.000Z",
+      "reasoning": "Niche open-source NFS caching infra for large compute workloads (VFX, HPC) — not relevant to typical solo dev products."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon GameLift Streams now supports IAM role credentials for stream sessions ",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-gamelift-streams-iam/",
+      "date": "2026-07-17T17:29:00.000Z",
+      "reasoning": "Security/credential improvement for GameLift Streams — incremental infra hardening."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon OpenSearch UI now supports one-click dashboard migration  ",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-opensearch-ui-one-click-dashboard-migration",
+      "date": "2026-07-17T17:23:00.000Z",
+      "reasoning": "Migration convenience tool for OpenSearch dashboards — internal ops tooling."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon SageMaker HyperPod now supports partition-level topology for Slurm orchestrated clusters",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/hyperpod-partition-topology-slurm/",
+      "date": "2026-07-17T15:16:00.000Z",
+      "reasoning": "HPC cluster topology optimization for large-scale ML training — enterprise/ML infra, not solo dev relevant."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon CloudWatch Synthetics now supports customer managed encryption keys",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/synthetics-customer-managed-keys/",
+      "date": "2026-07-16T20:34:00.000Z",
+      "reasoning": "Encryption key management enhancement for compliance-focused enterprises."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon Managed Grafana achieves FedRAMP High authorization in AWS GovCloud (US)",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-managed-grafana-fedramp-high/",
+      "date": "2026-07-16T19:31:00.000Z",
+      "reasoning": "FedRAMP compliance certification — relevant only to government contractors."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Track cost efficiency trends directly in Billing and Cost Management Dashboards with the new Cost Efficiency widget",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/monitor-cost-efficiency-using-dashboards",
+      "date": "2026-07-16T18:56:00.000Z",
+      "reasoning": "New cost-monitoring dashboard widget — internal billing analytics, not a product opportunity."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon EC2 now surfaces the public SSM parameters associated with public AMIs",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/ec2-public-images-ssm-parameters",
+      "date": "2026-07-16T18:20:00.000Z",
+      "reasoning": "Small metadata discoverability improvement for public AMIs."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon S3 Event Notifications now include system-generated tags",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-s3-event-notifications-system-generated-tags/",
+      "date": "2026-07-16T18:00:00.000Z",
+      "reasoning": "Minor enhancement to S3 event notification metadata for filtering at scale — enterprise ops convenience."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "PostgreSQL 19 Beta 2 is now available in Amazon RDS Database Preview Environment",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/postgresql-19-beta-2-amazon-rds-database-preview-environment/",
+      "date": "2026-07-16T18:00:00.000Z",
+      "reasoning": "Beta preview of a new PostgreSQL major version on RDS — useful to know but not yet a stable capability to build on."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "AWS Sustainability service now includes water withdrawals data",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/aws-sustainability-water-withdrawals/",
+      "date": "2026-07-16T16:43:00.000Z",
+      "reasoning": "Sustainability reporting data addition — enterprise ESG reporting."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon Redshift adds rg.large and rg.12xlarge instance sizes",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-redshift-adds-rg-large-12xlarge-instance-sizes",
+      "date": "2026-07-16T16:00:00.000Z",
+      "reasoning": "New instance sizes for Redshift — infra scaling option, no new capability."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon EC2 High Memory U7in-24TB instances now available in AWS Europe (Paris) region",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-ec2-high-memory-europe/",
+      "date": "2026-07-16T16:00:00.000Z",
+      "reasoning": "Regional rollout of an existing EC2 instance type."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon S3 removes 30-day minimum for transitions to S3 Standard-IA and S3 One Zone-IA",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/s3-removes-30-day-transitions-standard-ia-one-zone-ia",
+      "date": "2026-07-16T15:00:00.000Z",
+      "reasoning": "Removes a 30-day minimum retention rule before transitioning S3 objects to cheaper storage tiers — a real cost optimization, but it's an incremental infra tweak rather than something that unlocks a new product surface for solo builders."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "AWS Backup extends logically air-gapped vault support to six additional AWS Regions",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/aws-backup-logically-air-gapped-vault-regions/",
+      "date": "2026-07-16T10:00:00.000Z",
+      "reasoning": "Regional expansion of an existing backup feature."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "AWS Backup extends restore testing support to seven additional AWS Regions",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/aws-backup-restore-testing-regions/",
+      "date": "2026-07-16T10:00:00.000Z",
+      "reasoning": "Regional expansion of an existing backup testing feature."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "AWS Control Tower Account Factory for Terraform now re-applies customizations when accounts move between OUs",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/aws-control-tower-account/",
+      "date": "2026-07-16T04:07:00.000Z",
+      "reasoning": "Automation improvement for enterprise account provisioning (Control Tower/Terraform) — enterprise ops tooling."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon Aurora DSQL is now in scope for FedRAMP Moderate",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-aurora-dsql-now-in-scope-for-fedramp-moderate/",
+      "date": "2026-07-16T00:00:00.000Z",
+      "reasoning": "Compliance certification expansion for Aurora DSQL — relevant to government/regulated customers only."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon CloudWatch Logs Insights adds 25 new query commands and functions",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/7/amazon-cloudwatch-logs-insights-ql/",
+      "date": "2026-07-15T21:56:00.000Z",
+      "reasoning": "New query functions for CloudWatch Logs Insights — useful for log analysis, but an incremental feature for existing users rather than a new product opportunity."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon CloudWatch Logs announces intelligent tiering for storage",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-cloudwatch-intelligent-tiering/",
+      "date": "2026-07-15T20:00:00.000Z",
+      "reasoning": "Automatic storage tiering for CloudWatch Logs — cost/ops improvement, not a new capability to build on."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon MQ now supports configurable storage for RabbitMQ brokers",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-mq-rabbitmq-configurable-storage/",
+      "date": "2026-07-15T18:18:00.000Z",
+      "reasoning": "Configurable storage sizing for RabbitMQ brokers — infra flexibility tweak."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon EC2 G7e instances now available in additional regions",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-g7e-additional-regions/",
+      "date": "2026-07-15T18:04:00.000Z",
+      "reasoning": "Regional availability expansion of existing GPU instance type."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon RDS and Aurora expand R8gd and M8gd to additional Regions",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-rds-aurora-r8gd-m8gd-regions/",
+      "date": "2026-07-15T17:00:00.000Z",
+      "reasoning": "Regional expansion of existing RDS instance types."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon Cognito now supports importing users with password hashes",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-cognito-password-hash-import/",
+      "date": "2026-07-15T17:00:00.000Z",
+      "reasoning": "Cognito import convenience feature (password hash import) — useful migration tool but a narrow enterprise-migration convenience, not a new product surface."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon RDS and Aurora now support R8g and M8g database instances in additional AWS Regions",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/7/amazon-rds-aurora-r8g-m8g-regions/",
+      "date": "2026-07-15T17:00:00.000Z",
+      "reasoning": "Regional expansion of existing Graviton database instance types."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon MSK Express Brokers adds support for Apache Kafka version 4.2",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/aws-msk-express-version-42/",
+      "date": "2026-07-15T17:00:00.000Z",
+      "reasoning": "Version upgrade for managed Kafka brokers — infra update."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon RDS now supports up to four storage modifications in 24 hours ",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-rds-upto-four-storage-modifications-24-hours",
+      "date": "2026-07-15T16:15:00.000Z",
+      "reasoning": "Operational limit increase (storage modifications per day) for RDS — ops convenience, not new capability."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "AWS Glue SAP OData connector and zero-ETL integrations are now available in AWS GovCloud (US) regions",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/aws-glue-sap-zero-etl-govcloud",
+      "date": "2026-07-15T15:51:00.000Z",
+      "reasoning": "Regional (GovCloud) availability of an existing zero-ETL connector — not new capability, and government-only region."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon OpenSearch Service now supports the Agent Toolkit for AWS with a curated skill",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-opensearch-service-agent/",
+      "date": "2026-07-15T14:44:00.000Z",
+      "reasoning": "AI coding agent integration/skill for managing OpenSearch — a productivity tool for existing OpenSearch users, not a new product opportunity surface for solo builders outside that niche."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon RDS for Db2 is now available in additional AWS Commercial regions",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-rds-db2-available-additional-aws-commercial-regions",
+      "date": "2026-07-15T07:39:00.000Z",
+      "reasoning": "Regional expansion of RDS for Db2."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "AWS Lambda announces self-managed code storage",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/lambda-self-managed-code-storage/",
+      "date": "2026-07-15T07:00:00.000Z",
+      "reasoning": "Removes a Lambda code storage limit by allowing self-managed S3 storage — useful for large deployments but a narrow ops/quota fix relevant mainly to teams already hitting storage ceilings, not a new product-building opportunity."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "AWS Elastic Disaster Recovery reduces recovery time for AWS-to-AWS workloads",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/aws-drs-fast-recovery/",
+      "date": "2026-07-14T22:05:00.000Z",
+      "reasoning": "Recovery time improvement for disaster recovery service — enterprise ops feature."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "AWS Elastic Disaster Recovery now supports Amazon EBS volume initialization rate",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/aws-drs-fast-hydration/",
+      "date": "2026-07-14T22:00:56.000Z",
+      "reasoning": "Performance tuning knob for disaster recovery volume initialization — enterprise ops feature."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon CloudWatch announces lookup processor for log enrichment",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-cloudwatch-lookup-processor/",
+      "date": "2026-07-14T22:00:00.000Z",
+      "reasoning": "Log enrichment processor for CloudWatch pipelines — useful ops feature but incremental, not a new capability surface."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon EC2 M8in, M8idn, M8ib, M8idb instances are now available in additional regions ",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/m8in-m8idn-m8ib-m8idb-new-regions",
+      "date": "2026-07-14T20:00:00.000Z",
+      "reasoning": "Regional expansion of existing EC2 instance types."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "AWS Lambda console provides a one-click setup prompt for coding agents ",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/aws-lambda-prompt-coding-agents/",
+      "date": "2026-07-14T20:00:00.000Z",
+      "reasoning": "Console convenience feature (one-click coding agent setup) for Lambda — developer experience tweak, not a new capability."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "AWS IAM Identity Center achieves FedRAMP Class C Certification",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/aws-identity-center-fedramp/",
+      "date": "2026-07-14T19:10:00.000Z",
+      "reasoning": "FedRAMP certification for IAM Identity Center — government compliance only."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Introducing Amazon GuardDuty AI Protection for AWS AI workloads ",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-guardduty-ai-protection-aws/",
+      "date": "2026-07-14T19:00:00.000Z",
+      "reasoning": "Enterprise security monitoring feature for AI workloads (GuardDuty) — not relevant to solo dev product building."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Connect Customer Outbound Campaigns now in Cape Town Africa",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/connect-africa-cape-town/",
+      "date": "2026-07-14T19:00:00.000Z",
+      "reasoning": "Regional expansion of an existing outbound campaigns feature."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon Managed Service for Apache Flink now offers AI Agent Skills to simplify building and operating Flink applications",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-managed-service-flink-agent-skills/",
+      "date": "2026-07-14T18:20:00.000Z",
+      "reasoning": "AI agent skill/documentation aid for managing Flink apps — developer convenience tooling for a niche enterprise service."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon WorkSpaces Personal simplifies bulk PCoIP to DCV protocol migration",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-workspaces-personal-pcoip/",
+      "date": "2026-07-14T17:00:00.000Z",
+      "reasoning": "Migration tooling improvement for WorkSpaces protocol — enterprise VDI ops feature."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon Aurora DSQL is now available in Europe (Spain)",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-aurora-dsql-available-in-spain/",
+      "date": "2026-07-14T17:00:00.000Z",
+      "reasoning": "Regional availability expansion of an existing database service."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "AWS Security Hub now provides AI inventory for organization-wide visibility of AI assets ",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/aws-security-hub-ai/",
+      "date": "2026-07-14T17:00:00.000Z",
+      "reasoning": "Enterprise security inventory feature for AI assets — org-wide visibility tool, not relevant to solo builders."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "AWS Storage Gateway adds console support for copying file shares across gateways",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/aws-storage-gateway-console-copy-file-shares/",
+      "date": "2026-07-14T10:00:00.000Z",
+      "reasoning": "Console convenience feature for Storage Gateway migrations — enterprise ops tooling."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon CloudFront Functions now supports logging to CloudFront access logs ",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/cloudfront-functions-access-logs/",
+      "date": "2026-07-14T08:00:00.000Z",
+      "reasoning": "Logging enhancement for CloudFront Functions — developer convenience, not new capability."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "OpenAI GPT-5.6 Sol, Terra, and Luna now generally available on Amazon Bedrock",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/openai-gpt-sol-terra/",
+      "date": "2026-07-13T22:03:00.000Z",
+      "reasoning": "GA availability of OpenAI models on Amazon Bedrock — same models already accessible via OpenAI's own API; this just adds a Bedrock hosting option, no new capability for solo devs."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon Managed Service for Prometheus is now available in Asia Pacific (New Zealand) Region",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-managed-service-prometheus-new-zealand/",
+      "date": "2026-07-13T21:17:00.000Z",
+      "reasoning": "Regional rollout of an existing monitoring service."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon DocumentDB (with MongoDB compatibility) now available as a skill in the Agent Toolkit for AWS ",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-documentdb-agent-skill",
+      "date": "2026-07-13T18:00:00.000Z",
+      "reasoning": "AI coding agent skill for managing DocumentDB — developer convenience tooling for a niche database service."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon DocumentDB (with MongoDB compatibility) adds support for 46 new MongoDB operators in version 8.0.1 ",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-documentdb-mongodb-8-0-1-mongo-api",
+      "date": "2026-07-13T17:00:00.000Z",
+      "reasoning": "Expanded MongoDB API compatibility for DocumentDB — incremental compatibility improvement, not a new capability."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon Redshift Serverless now preserves zero-ETL and Amazon S3 event integrations during snapshot restores",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/redshift-serverless-zetl-autocopy-restore/",
+      "date": "2026-07-13T15:00:00.000Z",
+      "reasoning": "Reliability fix for Redshift Serverless snapshot restores — operational bug-fix-like improvement."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon SageMaker HyperPod now supports custom AMIs (Amazon Machine Images) for Slurm clusters ",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/hyperpod-custom-ami-slurm/",
+      "date": "2026-07-13T14:31:00.000Z",
+      "reasoning": "Custom AMI support for HyperPod Slurm clusters — enterprise ML infra feature."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon EKS Auto Mode now supports Application Recovery Controller zonal shift",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/eks-auto-mode-arc-zonal-shift",
+      "date": "2026-07-10T16:00:00.000Z",
+      "reasoning": "High-availability feature for EKS Auto Mode — enterprise infra reliability, not a new product opportunity."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "AWS Partner Central subsidiary connections now support qualification sharing",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/subsidiary-qualification-sharing/",
+      "date": "2026-07-10T04:00:00.000Z",
+      "reasoning": "Partner program administrative feature for AWS resellers — irrelevant to solo devs."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon EC2 C8id, M8id, and R8id instances are now available in additional regions",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-ec2-c8id-m8id-r8id/",
+      "date": "2026-07-09T19:33:00.000Z",
+      "reasoning": "Regional expansion of existing EC2 instance types."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon EC2 M8gd and R8gd instances are now available in AWS GovCloud (US)",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-ec2-m8gd-r8gd-us-govcloud/",
+      "date": "2026-07-09T19:24:00.000Z",
+      "reasoning": "Regional (GovCloud) expansion of existing EC2 instance types."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "AWS Partner Central introduces Partner Lead Prospecting",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/aws-partner-central-prospecting/",
+      "date": "2026-07-09T16:30:00.000Z",
+      "reasoning": "AI-powered sales prospecting tool for AWS reseller partners — irrelevant to solo devs building products."
+    },
+    {
+      "source": "aws-whats-new",
+      "title": "Amazon EC2 M8gd and R8gd instances are now available in additional AWS Regions",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/amazon-ec2-m8gd-r8gd-aws-regions/",
+      "date": "2026-07-08T19:29:00.000Z",
+      "reasoning": "Regional expansion of existing EC2 instance types."
+    },
+    {
+      "source": "cloudflare-blog",
+      "title": "Cloudflare WAF protects WordPress applications from two high-severity vulnerabilities ",
+      "url": "https://blog.cloudflare.com/wordpress-vulnerabilities/",
+      "date": "2026-07-17T21:30:43.000Z",
+      "reasoning": "Security patch/WAF rule deployment for known vulnerabilities — routine security response."
+    },
+    {
+      "source": "cloudflare-blog",
+      "title": "A broken DNSSEC rollover took down .al. Now 1.1.1.1 tells you when validation is bypassed",
+      "url": "https://blog.cloudflare.com/dnssec-nta-ede-33/",
+      "date": "2026-07-14T13:00:00.000Z",
+      "reasoning": "DNS reliability/transparency improvement (new error code) — internal protocol enhancement, not a product-building opportunity."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Runtime logs now show cache reasons",
+      "url": "https://vercel.com/changelog/runtime-logs-now-show-cache-reasons",
+      "date": "2026-07-17T01:00:00.000Z",
+      "reasoning": "Debugging UI improvement (shows why cache missed) — developer convenience, not a new capability."
+    },
+    {
+      "source": "vercel-news",
+      "title": "GLM 5.2 is 35% off via Novita on AI Gateway",
+      "url": "https://vercel.com/changelog/glm-5-2-is-35-off-via-novita-on-ai-gateway",
+      "date": "2026-07-17T00:01:00.000Z",
+      "reasoning": "A temporary one-week 35% discount on a specific model via a specific provider — too narrow and short-lived to scope a product around."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Optimized CDN caching and deploying of immutable static assets",
+      "url": "https://vercel.com/changelog/optimized-cdn-caching-and-deploying-of-immutable-static-assets",
+      "date": "2026-07-17T00:00:00.000Z",
+      "reasoning": "CDN/build performance optimization — no new capability, just faster/cheaper existing behavior."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Vercel Plugin now available in Kimi Code CLI",
+      "url": "https://vercel.com/changelog/vercel-plugin-now-available-in-kimi-code-cli",
+      "date": "2026-07-17T00:00:00.000Z",
+      "reasoning": "Integration of Vercel's documentation plugin into another CLI tool — developer convenience, not a new capability."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Write utilization now available in ISR Observability",
+      "url": "https://vercel.com/changelog/write-utilization-now-available-in-isr-observability",
+      "date": "2026-07-16T00:00:00.000Z",
+      "reasoning": "New observability metric for ISR — internal debugging tool, not a new capability."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Kimi K3 is now available on AI Gateway",
+      "url": "https://vercel.com/changelog/kimi-k3-is-now-available-on-ai-gateway",
+      "date": "2026-07-16T00:00:00.000Z",
+      "reasoning": "Addition of another model to AI Gateway's marketplace of models — routine model catalog expansion."
+    },
+    {
+      "source": "vercel-news",
+      "title": "How Speechify serves 500,000 dynamic pages to 60 million users on Vercel",
+      "url": "https://vercel.com/blog/how-speechify-serves-50000-dynamic-pages-to-60-million-users-on-vercel",
+      "date": "2026-07-15T04:00:00.000Z",
+      "reasoning": "Customer case study/marketing content, not a product change."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Vercel Connect support in GitHub Tools",
+      "url": "https://vercel.com/changelog/vercel-connect-support-in-github-tools",
+      "date": "2026-07-15T00:00:00.000Z",
+      "reasoning": "Developer convenience for token management in GitHub Tools — reduces secret handling friction, but a narrow security/DX improvement rather than a new product opportunity."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Faster, predictable project linking in the Vercel CLI",
+      "url": "https://vercel.com/changelog/faster-predictable-project-linking-in-the-vercel-cli",
+      "date": "2026-07-15T00:00:00.000Z",
+      "reasoning": "CLI performance/predictability improvement — developer convenience, not a new capability."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Inkling from Thinking Machines is now available on AI Gateway",
+      "url": "https://vercel.com/changelog/inkling-from-thinking-machines-is-now-available-on-ai-gateway",
+      "date": "2026-07-15T00:00:00.000Z",
+      "reasoning": "Addition of another model to AI Gateway — routine catalog expansion."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Vercel Workflows trace viewer now has a minimap",
+      "url": "https://vercel.com/changelog/vercel-workflows-trace-viewer-now-has-a-minimap",
+      "date": "2026-07-15T00:00:00.000Z",
+      "reasoning": "UI improvement (minimap) for the workflow trace viewer — minor DX polish."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Chat SDK adds Discord Components V2 support",
+      "url": "https://vercel.com/changelog/chat-sdk-adds-discord-components-v2-support",
+      "date": "2026-07-15T00:00:00.000Z",
+      "reasoning": "Incremental Discord adapter feature addition — niche, and Discord bot building was already possible; this just adds richer message components."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Vercel Blob now supports consistent reads on private storage",
+      "url": "https://vercel.com/changelog/vercel-blob-now-supports-consistent-reads-on-private-storage",
+      "date": "2026-07-14T00:00:00.000Z",
+      "reasoning": "Reliability/consistency improvement for Blob storage reads — useful but an incremental reliability fix, not a new capability that opens a new product category."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Vercel Plugin now available in VS Code and GitHub Copilot CLI",
+      "url": "https://vercel.com/changelog/vercel-plugin-now-available-in-vs-code-and-github-copilot-cli",
+      "date": "2026-07-14T00:00:00.000Z",
+      "reasoning": "Integration of an existing plugin into more IDE/CLI tools — developer convenience, not new capability."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Node.js 20 is being deprecated on October 1, 2026",
+      "url": "https://vercel.com/changelog/node-js-20-is-being-deprecated",
+      "date": "2026-07-14T00:00:00.000Z",
+      "reasoning": "Deprecation notice for an old Node.js runtime version — routine maintenance announcement."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Endform joins the Vercel Marketplace",
+      "url": "https://vercel.com/changelog/endform-joins-the-vercel-marketplace",
+      "date": "2026-07-14T00:00:00.000Z",
+      "reasoning": "A third-party test-runner tool joining the Vercel Marketplace — a marketplace listing, not a platform capability change."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Chat SDK adds X adapter support",
+      "url": "https://vercel.com/changelog/chat-sdk-adds-x-adapter-support",
+      "date": "2026-07-14T00:00:00.000Z",
+      "reasoning": "Incremental adapter addition (X platform) to an existing multi-platform chat SDK — niche and X's automation rules limit bot usefulness."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Agent Runs now show subagent activity on eve projects",
+      "url": "https://vercel.com/changelog/agent-runs-now-show-subagent-activity-on-eve-projects",
+      "date": "2026-07-13T00:00:00.000Z",
+      "reasoning": "Observability UI addition for inspecting subagent activity in Vercel's eve product — internal debugging tool, not a new capability."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Manage Vercel Flags targeting rules from the CLI",
+      "url": "https://vercel.com/changelog/manage-vercel-flags-targeting-rules-from-the-cli",
+      "date": "2026-07-13T00:00:00.000Z",
+      "reasoning": "CLI management feature for feature flags — developer convenience, not new capability."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Configure which sources can create deployments with Deployment Policies",
+      "url": "https://vercel.com/changelog/configure-which-sources-can-create-deployments-with-deployment-policies",
+      "date": "2026-07-13T00:00:00.000Z",
+      "reasoning": "Security/governance feature restricting deployment sources — enterprise-oriented control, not a product opportunity."
+    },
+    {
+      "source": "vercel-news",
+      "title": "Web Analytics and Speed Insights are now more cost-efficient",
+      "url": "https://vercel.com/changelog/web-analytics-and-speed-insights-are-now-more-cost-efficient",
+      "date": "2026-07-13T00:00:00.000Z",
+      "reasoning": "A ~10% cost efficiency improvement applied automatically — minor pricing tweak, not a meaningful new opportunity."
+    },
+    {
+      "source": "supabase-changelog",
+      "title": "Unified Logs is now in open beta",
+      "url": "https://supabase.com/blog/unified-logs-open-beta",
+      "date": "2026-07-16T07:00:00.000Z",
+      "reasoning": "A unified log-viewing UI improvement across Supabase services — useful debugging tool, but no new API or capability unlocked."
+    }
+  ],
+  "errors": []
+}

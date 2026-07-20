@@ -1,6 +1,14 @@
 {
   "digests": [
     {
+      "file": "digests/2026-07-20.json",
+      "generatedAt": "2026-07-20T19:16:23.606Z",
+      "isBootstrap": false,
+      "weekSummary": "A mostly quiet week dominated by AWS regional rollouts, infra version bumps, and enterprise/compliance features, plus a wave of OpenAI/Google blog and policy posts with no new developer capabilities. The few genuine openings were on the periphery: Twilio's new phone-reachability lookup API, Vercel making Sandbox data downloads free, Vercel's new Web Analytics API and open AI Gateway leaderboard data, Chat SDK's Slack adapter, and AgentMail's marketplace integration — each a concrete, buildable opening for a solo developer.",
+      "opportunityCount": 6,
+      "filteredCount": 120
+    },
+    {
       "file": "digests/2026-07-13.json",
       "generatedAt": "2026-07-13T18:52:02.351Z",
       "isBootstrap": false,
